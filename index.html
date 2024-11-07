@@ -234,42 +234,6 @@
     //VIDEO
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-  var video = document.getElementById('video');
-  var fastForwardInterval, rewindInterval;
-
-  function clearIntervals() {
-    clearInterval(fastForwardInterval);
-    clearInterval(rewindInterval);
-  }
-
-  video.addEventListener('touchstart', function (e) {
-    const touchX = e.touches[0].clientX;
-    const videoWidth = video.offsetWidth;
-    const isRightSide = touchX > videoWidth / 2;
-    const isLeftSide = touchX < videoWidth / 2;
-
-    if (isRightSide) {
-      // Avanzar
-      fastForwardInterval = setInterval(() => {
-        video.currentTime += 0.5; // Ajusta la velocidad de avance
-      }, 100);
-    } else if (isLeftSide) {
-      // Retroceder
-      rewindInterval = setInterval(() => {
-        video.currentTime -= 0.5; // Ajusta la velocidad de retroceso
-      }, 100);
-    }
-  });
-
-  video.addEventListener('touchend', function () {
-    clearIntervals();
-  });
-
-  video.addEventListener('touchcancel', function () {
-    clearIntervals();
-  });
-});
 
 
 
