@@ -236,6 +236,10 @@
 
 
 
+    
+
+
+
 
 
 
@@ -251,6 +255,48 @@
 
     
   </script>
+
+
+
+      <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+  var video = document.getElementById('video');
+  
+  function setPlaybackRate(rate) {
+    video.playbackRate = rate;
+    video.play();
+  }
+
+  function resetPlaybackRate() {
+    video.playbackRate = 1;
+    video.pause();
+  }
+
+  video.addEventListener('touchstart', function (e) {
+    const touchX = e.touches[0].clientX;
+    const videoWidth = video.offsetWidth;
+
+    if (touchX > videoWidth / 2) {
+      // Lado derecho: avanzar en cámara rápida
+      setPlaybackRate(3); // Ajusta a la velocidad deseada (3x)
+    } else {
+      // Lado izquierdo: retroceder en cámara rápida
+      setPlaybackRate(-3); // Ajusta a la velocidad deseada (-3x para retroceso)
+    }
+  });
+
+  video.addEventListener('touchend', function () {
+    resetPlaybackRate();
+  });
+
+  video.addEventListener('touchcancel', function () {
+    resetPlaybackRate();
+  });
+});
+
+      </script>
 </body>
 
 
